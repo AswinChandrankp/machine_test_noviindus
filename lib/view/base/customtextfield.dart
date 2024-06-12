@@ -157,7 +157,7 @@ class CustomTextField extends StatefulWidget {
   final Color? errorBorderColor;
   final TextStyle? hintStyle;
   final TextStyle? textStyle;
-  final Title ;
+  final title ;
 
   const CustomTextField({
     Key? key,
@@ -173,7 +173,7 @@ class CustomTextField extends StatefulWidget {
     this.focusedBorderColor,
     this.errorBorderColor,
     this.hintStyle,
-    this.textStyle,  this.Title,
+    this.textStyle,  this.title,
   }) : super(key: key);
 
   @override
@@ -209,7 +209,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text( "${widget.Title}",),
+          child: Text( "${widget.title}",),
         ),
 
         Stack(
