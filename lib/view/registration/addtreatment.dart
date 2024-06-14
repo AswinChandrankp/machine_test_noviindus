@@ -170,6 +170,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:machine_test_noviindus/controller/addtreatmentcontroller.dart';
+import 'package:machine_test_noviindus/controller/registrationcontroller.dart';
+import 'package:machine_test_noviindus/model/treatmentmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:machine_test_noviindus/view/base/customButton.dart';
 import 'package:machine_test_noviindus/view/base/customdropdown.dart';
@@ -201,16 +203,35 @@ class Addtreatment extends StatelessWidget {
             //     context.read<addtreatmentcontroller>().treatmentname = p0.toString();
             //   },
             // ),
-             CustomDropdown1(
+            //  CustomDropdown1(
                 
-                items: List<String>.generate(20, (index) => 'Item ${index + 1}'), 
-                hintText: "Choose preferred treatmen", 
-                title: "Choose Treatment",
-                 onChanged: (p0) {
-                print(p0);
-                context.read<addtreatmentcontroller>().treatmentname = p0.toString();
-              },
-                ),
+            //     items: List<String>.generate(20, (index) => 'Item ${index + 1}'), 
+            //     hintText: "Choose preferred treatmen", 
+            //     title: "Choose Treatment",
+            //      onChanged: (p0) {
+            //     print(p0);
+            //     context.read<addtreatmentcontroller>().treatmentname = p0.toString();
+            //   },
+            //     ),
+                Consumer<RegistrationController>(
+  builder: (context, controller, child) {
+    final items = controller.treatments;
+    List<String> treatmentNames = [];
+
+     for ( int i= 0; i< items.length ; i ++ ){  
+          final data = items[i].name;
+           treatmentNames.add(data.toString());
+     }
+
+    print(treatmentNames.isEmpty ? "no items" : "items: $treatmentNames");
+
+    return CustomDropdown(
+      items: treatmentNames,
+      hintText: "Choose Treatment",
+      title: "Treatment",
+    );
+  },
+),
             SizedBox(height: 20),
             Text("Add Patient"),
             Row(

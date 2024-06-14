@@ -81,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                     //   context,
                     //   MaterialPageRoute(builder: (context) => PatientScreen()),
                     // );
-                    context.read<AuthController>().login();
+                    context.read<AuthController>().login(context);
                   },
                 ),
               ],

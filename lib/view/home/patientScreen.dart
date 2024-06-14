@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:machine_test_noviindus/controller/patientcontroller.dart';
+import 'package:machine_test_noviindus/controller/registrationcontroller.dart';
 import 'package:machine_test_noviindus/view/base/customButton.dart';
 import 'package:machine_test_noviindus/view/home/patientlist.dart';
 import 'package:machine_test_noviindus/view/registration/registerscreen.dart';
+import 'package:provider/provider.dart';
 
 class PatientScreen extends StatelessWidget {
   const PatientScreen({super.key});
+
+   
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,9 @@ class PatientScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => Registerscreen()),
-          );
+          ).then((value) => Provider.of<RegistrationController>(context, listen: false).onRegister());
+          
+          
         },
         padding: EdgeInsets.only(
             left: MediaQuery.of(context).size.width * 0.25,
@@ -40,7 +47,7 @@ class PatientScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
-        child: PationList(),
+        child: PatientListView(),
       ),
     );
   }
